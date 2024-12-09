@@ -9,11 +9,17 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Our Ivayo Eco-sandals Online shop</h1>
-        <nav>
+        <h1>Welcome to Ivayo Eco-sandals Online shop</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <!-- Links -->
-                <ul class="navbar-nav">
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-be-target="navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                    <div class="collapse-navbar-collapse" id="navbarNav"></div>
+                    <ul class="navbar-nav ms-auto">
+               
                   <li class="nav-item">
                     <a class="nav-link" href="index.html">Home</a>
                   </li>
@@ -32,17 +38,74 @@
     </header>
     <main>
         <main>
-            <h2>Items in Your Cart</h2>
+        
             <ul id="cartItems">
                 <!-- Cart items will be displayed here -->
-            </ul>
-            <p>Total: $<span id="cartTotal">0</span></p>
-        </main>
-    
-    </main>
+                <body>
+                    <div class="container">
+                        <h1 class="my-4">Shopping Cart</h1>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart.html">
+                                    <!-- Cart items will be dynamically inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-right">
+                            <h4>Total: $<span id="cartTotal">0.00</span></h4>
+                        </div>
+                    </div>
+                
+                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    <script>
+                        // Example cart items array
+                        const cart = [
+                            { product: 'Product 1', price: 10.00, quantity: 2 },
+                            { product: 'Product 2', price: 20.00, quantity: 1 },
+                            { product: 'Product 3', price: 15.00, quantity: 3 }
+                        ];
+                
+                        function updateCart() {
+                            const cartItems = document.getElementById('cartItems');
+                            const cartTotal = document.getElementById('cartTotal');
+                            
+                            cartItems.innerHTML = '';
+                            let total = 0;
+                
+                            cart.forEach(item => {
+                                const row = document.createElement('tr');
+                                
+                                const productCell = document.createElement('td');
+                                productCell.textContent = item.product;
+                                row.appendChild(productCell);
+                                
+                                const priceCell = document.createElement('td');
+                                priceCell.textContent = `$${item.price.toFixed(2)}`;
+                                row.appendChild(priceCell);
+                
+                                const quantityCell = document.createElement('td');
+                                quantityCell.textContent = item.quantity;
+                                row.appendChild(quantityCell);
+                
+                                const totalCell = document.createElement('td');
+                                totalCell.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+                                row.appendChild(totalCell);
+                
+                                cartItems.appendChild(row);
+                
     <footer>
-        <p>&copy; 2024 Ivayo eco-sandals Online Shop</p>
+        <div class="text-center py-3 my-5 border">
+            <h6>Ivayo Eco-sandals@2024</h6>
     </footer>
-    <script src="script.js"></script>
     </body>
     </html>
