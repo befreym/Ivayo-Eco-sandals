@@ -1,111 +1,73 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivayo eco-sandals - Home</title>
+    <title>Ivayo Eco-sandals - Cart</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to Ivayo Eco-sandals Online shop</h1>
+        <h1>Your Shopping Cart</h1>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <!-- Links -->
-               
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-be-target="navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                    <div class="collapse-navbar-collapse" id="navbarNav"></div>
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-               
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="products.html">Products</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-              </div>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
-        <main>
-        
-            <ul id="cartItems">
-                <!-- Cart items will be displayed here -->
-                <body>
-                    <div class="container">
-                        <h1 class="my-4">Shopping Cart</h1>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cart.html">
-                                    <!-- Cart items will be dynamically inserted here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="text-right">
-                            <h4>Total: $<span id="cartTotal">0.00</span></h4>
-                        </div>
-                    </div>
-                
-                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                    <script>
-                        // Example cart items array
-                        const cart = [
-                            { product: 'Product 1', price: 10.00, quantity: 2 },
-                            { product: 'Product 2', price: 20.00, quantity: 1 },
-                            { product: 'Product 3', price: 15.00, quantity: 3 }
-                        ];
-                
-                        function updateCart() {
-                            const cartItems = document.getElementById('cartItems');
-                            const cartTotal = document.getElementById('cartTotal');
-                            
-                            cartItems.innerHTML = '';
-                            let total = 0;
-                
-                            cart.forEach(item => {
-                                const row = document.createElement('tr');
-                                
-                                const productCell = document.createElement('td');
-                                productCell.textContent = item.product;
-                                row.appendChild(productCell);
-                                
-                                const priceCell = document.createElement('td');
-                                priceCell.textContent = `$${item.price.toFixed(2)}`;
-                                row.appendChild(priceCell);
-                
-                                const quantityCell = document.createElement('td');
-                                quantityCell.textContent = item.quantity;
-                                row.appendChild(quantityCell);
-                
-                                const totalCell = document.createElement('td');
-                                totalCell.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-                                row.appendChild(totalCell);
-                
-                                cartItems.appendChild(row);
-                
+        <div class="container my-4">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartItems">
+                        <!-- Cart items will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-end">
+                <h4>Total: $<span id="cartTotal">0.00</span></h4>
+            </div>
+        </div>
+    </main>
     <footer>
-        <div class="text-center py-3 my-5 border">
-            <h6>Ivayo Eco-sandals@2024</h6>
+        <p class="text-center">&copy; 2024 Ivayo Eco-sandals</p>
     </footer>
-    </body>
-    </html>
+
+    <script>
+        function updateCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                
+                const productCell = document.createElement('td');
+                productCell.textContent = item.product;
+                row.appendChild(productCell);
+                
+                const priceCell = document.createElement('td');
+[_{{{CITATION{{{_1{](https://github.com/hyurl/cool-node/tree/b9091f76937076e02849032776c31a6863adc8aa/README.md)[_{{{CITATION{{{_2{](https://github.com/ElysaBouttier/projet4/tree/fe153fa05c27d4a16e6a88b4657449b7f75070d8/view%2Fbackend%2Ftemplates.php)[_{{{CITATION{{{_3{](https://github.com/Rishika36/mobilepay100/tree/26de2972eb7282624cfecca7e3df25b533872577/sparks%2Fnav.php)[_{{{CITATION{{{_4{](https://github.com/juanpablo-code2003/marcha/tree/bcdc214e6303e4b896f739cf22c22e2e75d3a4e2/app%2FViews%2Fingreso.php)[_{{{CITATION{{{_5{](https://github.com/SiThu34297/PHP_Article_Project/tree/bf5a9b8c62932f07ad40b811516da802cb719063/views%2Flayouts%2Fheader.php)[_{{{CITATION{{{_6{](https://github.com/netrometro/upe_20202_dodois/tree/0b0091dbed80b22abb7e88359e256a1dca63ac6f/app%2Fcomponents%2Fmenu.js)[_{{{CITATION{{{_7{](https://github.com/gagas3113/uts_1402019041/tree/95f760ab6348f7119af08858f43580ca1bf172f1/uts_1402019041%2Findex.php)[_{{{CITATION{{{_8{](https://github.com/Pengkuh/rental-mobil/tree/1a5867a55871ff84a0d56dec98d7a42168f12d3c/carecar%2Forder%2Forder.php)[_{{{CITATION{{{_9{](https://github.com/Sanket-Jagtap1/portfolio/tree/db61642d29011e32812d84ceb0522fbef23cf505/js%2Fscript.js)[_{{{CITATION{{{_10{](https://github.com/riajmunna/Ecommerce-Website-eShop.com/tree/330020a89ca93d6985a9a3bc13bb5cada1344397/Source%20Code%2Fview_profile.php)[_{{{CITATION{{{_11{](https://github.com/gautham71298/knockout/tree/fefccd3867b155b6547bcc223b8ca11a74bdf87c/studymat.php)[_{{{CITATION{{{_12{](https://github.com/janalenypino/goodstyle/tree/768851967c94b3a6ab549be0d30dffbafdd1ce7c/Laravel%2Fresources%2Fviews%2FPages%2Flogin.blade.php)[_{{{CITATION{{{_13{](https://github.com/gwalesh/fswd-static/tree/8cc71016e93a17c57cd29d2757f34546588a926a/products.php)[_{{{CITATION{{{_14{](https://github.com/derciopale/Kunandzica/tree/c6ea6ac3870e44587ffa2691c26de88d7228a047/index.php)[_{{{CITATION{{{_15{](https://github.com/jihene7/Projet-Web/tree/e1dcf31c0f2406ea5e52cd7d9529bffe18ab41b6/nalika%2FVal%2Fviews%2Fupdate_Cart.php)[_{{{CITATION{{{_16{](https://github.com/Nayanathara123/KBTec/tree/fd23829168419b53794688e41beb9d054039e576/application%2Fviews%2FWebsite%2FWebsite.php)[_{{{CITATION{{{_17{](https://github.com/esedb/poetry/tree/3faaf4b661e756de57c3f11759b6dc2456985c25/resources%2Fviews%2Fnavbar.blade.php)[_{{{CITATION{{{_18{](https://github.com/rkustas/techarticles/tree/598d65a5c026d9ecd3c7f0258f4a44f93e7029d0/client%2Fpages%2F_document.js)[_{{{CITATION{{{_19{](https://github.com/themrzlyv/movieland/tree/e10cbc7fda8f8cf1ef44fd0328e11ba52715d0bd/src%2Fpages%2F_document.js)[_{{{CITATION{{{_20{](https://github.com/SantiSL5/ANGULARJS_FW_PHP_MVC_OO/tree/2fd91086fa2eea7c56948aaa023a1c5c0ece9e1b/frontend%2Fassets%2Finc%2Ftop_page_cart.php)[_{{{CITATION{{{_21{](https://github.com/aknsha/Osom/tree/6c43d4efe3fabc5296cdf5f0bb5aa0867482db8a/header.php)[_{{{CITATION{{{_22{](https://github.com/codesyariah122/codesyariah122.github.io/tree/a77bfb1081fa3cc6851651efd417b7434ddbd101/_posts%2F2020-09-06-routing-dan-blade-templating-laravel7.md)[_{{{CITATION{{{_23{](https://github.com/nhungoc1508/egrocery/tree/6ffa40bfdd5c47a5d109e90779cbcc0ca2200240/eGrocery%20website%20latest%2Ftemplates%2Fshoppingcart.php)[_{{{CITATION{{{_24{](https://github.com/muhammad-naga/naga-furniture-1/tree/dff8df610735f1be30f86cfa17e2dbfeffe80aaf/client%2Fsrc%2Fpages%2Fcart-page%2Findex.js)[_{{{CITATION{{{_25{](https://github.com/AceRex/atata57React/tree/7c18d15d9bf668d25542e13df581236230abdcdb/src%2Fcomponents%2FPages%2FCartCss%2Fcart.js)[_{{{CITATION{{{_26{](https://github.com/psyitama/e-commerce-webapp/tree/fdd0172c468a5d6f5cf32b7f10c1ba2e75158eca/codes%2Fapplication%2Fviews%2Fcustomers%2Fcarts.php)
